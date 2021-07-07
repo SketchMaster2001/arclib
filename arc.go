@@ -26,16 +26,16 @@ type ARCRecord struct {
 }
 
 // LoadFromFile reads a file and passes its contents to Load.
-func (a *ARC) LoadFromFile(path string) error {
+func LoadFromFile(path string) (*ARC, error) {
 	contents, err := ioutil.ReadFile(path)
 	if err != nil {
 		return err
 	}
-	return a.Load(contents)
+	return Load(contents)
 }
 
 // Load takes the given ARC and breaks it down into a more easily dealt with format.
-func (a *ARC) Load(contents []byte) error {
+func Load(contents []byte) (*ARC, error) {
 	m := miniRead{
 		contents: contents,
 	}
